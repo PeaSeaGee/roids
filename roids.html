@@ -11,6 +11,22 @@
                 margin-top: 1rem;
             }
         </style>
+        <script type="text/javascript">
+            function hex2emoji() {
+                //get elements, perhaps I should DRY later?
+                var hexEl = document.getElementById("hexInput");
+                var emojiEl = document.getElementById("emojiInput");
+                var hexString = hexEl.value;
+                var emojiString = ""; //init!
+                //make sure it's an even number of characters
+                // TODO: make sure it's all legal hex characters :troll:
+                if (hexString.length % 2 != 0) {
+                    hexString = hexString + "0";
+                    hexEl.value = hexString;
+                }
+            }
+                
+        </script>
     </head>
     <body>
         <div class="container">
@@ -21,7 +37,7 @@
                 <div class="twelve columns"><center><input id="hexInput" type="text" onblur="hex2emoji();" size="24"></center></div>
             </div>
             <div class="row">
-                <div class="twelve columns"><center><input id="hexInput" type="text" onblur="emoji2hex();" size="24"></center></div>
+                <div class="twelve columns"><center><input id="emojiInput" type="text" onblur="emoji2hex();" size="24"></center></div>
             </div>
         </div>
     </body>
