@@ -20,4 +20,11 @@ This is a JS script for converting ObjectIDs natively within the `mongo` shell t
 ## Credits
 The word list I grabbed from [this Bitcoin BIPS file](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt) and paired it down to 1/8th the original size.
 
-MongoDB Inc., is my employer. Our internal hackathon, named Skunkworks, is where I did this work for in July, 2018.
+MongoDB Inc., is my employer. Our internal hackathon, named Skunkworks, is where I did this work for in July 2018.
+
+## Future work?
+
+* Adding more emojis to the emoji mode to increase the bits per glyph
+* Make words into sentences, like adjective noun verb (green bridge flies) to make things more memorable
+* Increase bits per word to shorten things, maybe down to something like [what3words](https://what3words.com/)
+* Color selectors? (How?)
