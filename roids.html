@@ -47,8 +47,9 @@
                 }
                 //write to the <input> and sin no more
                 emojiEl.value = emojiString;
-                //make words
+                //make words & colors
                 hex2words();
+                hex2colors();
             };
             function emoji2hex() {
                 //get elements, perhaps I should DRY later?
@@ -60,12 +61,13 @@
                 for (strIdx = 0; strIdx <= emojiString.length-1; strIdx += 2) {
                     var currCP = emojiString.codePointAt(strIdx);
                     var cpStr = currCP.toString(16); //need hex version of the code point to pull out the LSB
-                    var currByte = cpStr.substring(cpStr.length-2)
+                    var currByte = cpStr.substring(cpStr.length-2);
                     hexString = hexString + currByte;
                 }
                 hexEl.value=hexString;
-                //make words
+                //make words & colors
                 hex2words();
+                hex2colors();
             } ;
             function hex2words() {
                 var hexEl = document.getElementById("hexInput");
@@ -79,6 +81,24 @@
                     wordsString = wordsString + wordlist[parseInt(currByte,16)] + " ";
                 }
                 wordsEl.value=wordsString;
+            }
+            function hex2colors() {
+                var hexEl = document.getElementById("hexInput");
+                var hexString = hexEl.value;
+                var colorsEl = [
+                    document.getElementById("color-0"),
+                    document.getElementById("color-1"),
+                    document.getElementById("color-2"),
+                    document.getElementById("color-3")
+                ];
+                colorsEl.forEach(function(el){el.style.backgroundColor=""}); //reset/init!
+                if (hexString.length != 24) {console.log("ERR: hex wrong len. no colors!"); return;};
+                var strIdx;
+                for (strIdx = 0; strIdx <= hexString.length-1; strIdx += 6) {
+                    var currColor = "#" + hexString.substring(strIdx, strIdx+6);
+                    var currCell = Math.floor(strIdx/6);
+                    colorsEl[currCell].style.backgroundColor = currColor;
+                }
             }  
         </script>
     </head>
@@ -95,6 +115,12 @@
             </div>
             <div class="row">
                 <div class="twelve columns"><center><textarea readonly id="words" width="60%"></textarea></center></div>
+            </div>
+            <div class="row">
+                <div class="three columns" id="color-0">&nbsp;</div>
+                <div class="three columns" id="color-1">&nbsp;</div>
+                <div class="three columns" id="color-2">&nbsp;</div>
+                <div class="three columns" id="color-3">&nbsp;</div>
             </div>
         </div>
     </body>
