@@ -10,6 +10,9 @@
             .row {
                 margin-top: 1rem;
             }
+            input {
+                font-size: 3rem;
+            }
         </style>
         <script type="text/javascript">
             function hex2emoji() {
@@ -31,8 +34,22 @@
                 }
                 //write to the <input> and sin no more
                 emojiEl.value = emojiString;
-            }
-                
+            };
+            function emoji2hex() {
+                //get elements, perhaps I should DRY later?
+                var hexEl = document.getElementById("hexInput");
+                var emojiEl = document.getElementById("emojiInput");
+                var emojiString = emojiEl.value;
+                var hexString = ""; //init!
+                var strIdx;
+                for (strIdx = 0; strIdx <= emojiString.length-1; strIdx += 2) {
+                    var currCP = emojiString.codePointAt(strIdx);
+                    var cpStr = currCP.toString(16); //need hex version of the code point to pull out the LSB
+                    var currByte = cpStr.substring(cpStr.length-2)
+                    hexString = hexString + currByte;
+                }
+                hexEl.value=hexString;
+            } ;  
         </script>
     </head>
     <body>
@@ -41,10 +58,10 @@
                 <div class="twelve columns"><center><h1>Readable ObjectIDs</h1></center></div>
             </div>
             <div class="row">
-                <div class="twelve columns"><center><input id="hexInput" type="text" onblur="hex2emoji();" size="80"></center></div>
+                <div class="twelve columns"><center><input id="hexInput" type="text" onblur="hex2emoji();" size="60%"></center></div>
             </div>
             <div class="row">
-                <div class="twelve columns"><center><input id="emojiInput" type="text" onblur="emoji2hex();" size="80"></center></div>
+                <div class="twelve columns"><center><input id="emojiInput" type="text" onblur="emoji2hex();" size="60%"></center></div>
             </div>
         </div>
     </body>
