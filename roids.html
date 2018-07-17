@@ -13,16 +13,29 @@
             input {
                 font-size: 3rem;
             }
+            textarea {
+                font-size: 2rem;
+                width: 60%;
+            }
         </style>
+        <script type="text/javascript" src="reducedEnglish.js"></script>
         <script type="text/javascript">
+            function isHex(h) {
+                var a = parseInt(h,16);
+                return (a.toString(16) === h)
+            };
             function hex2emoji() {
                 //get elements, perhaps I should DRY later?
                 var hexEl = document.getElementById("hexInput");
                 var emojiEl = document.getElementById("emojiInput");
                 var hexString = hexEl.value;
                 var emojiString = ""; //init!
+                //test that input is hex
+                if (isHex(hexString)) {
+                    console.log("ERR: string is not valid hex!");
+                    return;
+                }
                 //make sure it's an even number of characters
-                // TODO: make sure it's all legal hex characters :troll:
                 if (hexString.length % 2 != 0) {
                     hexString = hexString + "0";
                     hexEl.value = hexString;
@@ -34,6 +47,8 @@
                 }
                 //write to the <input> and sin no more
                 emojiEl.value = emojiString;
+                //make words
+                hex2words();
             };
             function emoji2hex() {
                 //get elements, perhaps I should DRY later?
@@ -49,7 +64,22 @@
                     hexString = hexString + currByte;
                 }
                 hexEl.value=hexString;
-            } ;  
+                //make words
+                hex2words();
+            } ;
+            function hex2words() {
+                var hexEl = document.getElementById("hexInput");
+                var wordsEl = document.getElementById("words");
+                var hexString = hexEl.value;
+                var wordsString = "";
+                wordsEl.value = wordsString; //init!
+                var strIdx;
+                for (strIdx = 0; strIdx <= hexString.length-1; strIdx += 2) {
+                    var currByte = hexString.substring(strIdx,strIdx+2);
+                    wordsString = wordsString + wordlist[parseInt(currByte,16)] + " ";
+                }
+                wordsEl.value=wordsString;
+            }  
         </script>
     </head>
     <body>
@@ -62,6 +92,9 @@
             </div>
             <div class="row">
                 <div class="twelve columns"><center><input id="emojiInput" type="text" onblur="emoji2hex();" size="60%"></center></div>
+            </div>
+            <div class="row">
+                <div class="twelve columns"><center><textarea id="words" width="60%"></textarea></center></div>
             </div>
         </div>
     </body>
