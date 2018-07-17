@@ -24,6 +24,13 @@
                     hexString = hexString + "0";
                     hexEl.value = hexString;
                 }
+                var strIdx;
+                for (strIdx = 0; strIdx <= hexString.length-1; strIdx += 2) {
+                    var currByte = hexString.substring(strIdx,strIdx+2);
+                    emojiString = emojiString + String.fromCodePoint("0x1f4"+currByte);
+                }
+                //write to the <input> and sin no more
+                emojiEl.value = emojiString;
             }
                 
         </script>
