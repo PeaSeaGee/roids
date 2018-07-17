@@ -9,11 +9,11 @@ This project is probably not meant to be taken seriously.
 
 There are two pieces to this project:
 
-###roids.html
+### roids.html
 
 This is a JS/HTML converter between the hex string format and a few more readable formats. It also accomplishes translation back for one of these formats.
 
-###roids.js
+### roids.js
 
 This is a JS script for converting ObjectIDs natively within the `mongo` shell to and from one of these formats.
 
