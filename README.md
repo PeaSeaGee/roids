@@ -11,16 +11,20 @@ There are two pieces to this project:
 
 ### roids.html
 
+<img src="https://i.imgur.com/0KfgJti.png" width="60%">
+
 This is a JS/HTML converter between the hex string format and a few more readable formats. It also accomplishes translation back for one of these formats.
 
 ### roids.js
+
+<img src="https://imgur.com/9Mpp50H.png" width="40%">
 
 This is a JS script for converting ObjectIDs natively within the `mongo` shell to and from one of these formats.
 
 ## Credits
 The word list I grabbed from [this Bitcoin BIPS file](https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt) and paired it down to 1/8th the original size.
 
-MongoDB Inc., is my employer. Our internal hackathon, named Skunkworks, is where I did this work for in July 2018.
+MongoDB Inc., is my employer. Our internal hackathon, named Skunkworks in July 2018 is where I made this.
 
 ## Future work?
 
